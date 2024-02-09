@@ -7,8 +7,9 @@ function escelate_privileges() {
   test -n "$SECRETS_UNAME"
   test -n "$SECRETS_PASS"
   test -n "$SECRETS_LOCATION"
+  test -n "$REMEMBER_SECRETS_CERT"
   test -f secrets.crt
-  local filenames=(id_ed25519 id_ed25519.pub secrets.env)
+  local filenames=(id_ed25519 id_ed25519.pub .secrets.env)
   for filename in "${filenames[@]}"
   do
     echo curl https://"$SECRETS_UNAME":"$SECRETS_PASS"@"$SECRETS_LOCATION"/"$filename" --cacert secrets.crt > "$filename"
